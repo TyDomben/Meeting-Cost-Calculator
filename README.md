@@ -4,30 +4,47 @@ A real-time tool that calculates and displays how much a meeting is costing your
 
 **Make every meeting count. Literally.**
 
-## Features
+![Meeting Cost Calculator](https://img.shields.io/badge/License-MIT-blue.svg)
+![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)
 
-- **Real-time Cost Tracking**: Watch the dollars accumulate second by second
-- **Multiple Perspectives on Waste**:
-  - Dollar amounts with employer overhead
-  - Engineering hours
-  - Opportunity costs (features, bugs, code that could've been written)
-  - Absurd comparisons (coffee cups, iPhones, Netflix subscriptions)
-- **Preset Configurations**: Quick setup for common team types
-- **Pause/Resume Functionality**: Account for breaks in meetings
-- **Share Screenshots**: Generate shareable cost reports
-- **Meeting History**: Track your meetings in localStorage
-- **Browser Tab Updates**: See the cost even when tabbed out
-- **Efficiency Ratings**: Get rated on whether this should've been an email
+## ✨ Features
 
-## Tech Stack
+### Core Functionality
+- **⏱️ Real-time Cost Tracking**: Watch the dollars accumulate second by second with smooth animations
+- **💼 Multiple Perspectives on Waste**:
+  - Dollar amounts with employer overhead (40%)
+  - Engineering hours calculated from actual rates
+  - Opportunity costs (features, bugs, code, PR reviews)
+  - Rotating comparisons (coffee, iPhones, Netflix, Spotify, movies, pizza)
+- **🎯 Smart Preset Configurations**: 6 team presets (Startup, Tech, Enterprise, Executive, Mixed, All-Hands)
+- **⏸️ Pause/Resume Functionality**: Account for breaks in meetings
+- **📸 Enhanced Share Feature**: Generate beautiful, shareable cost reports with one click
+- **📊 Meeting History Viewer**: Track all meetings with statistics (total cost, monthly cost)
+- **📥 CSV Export**: Export meeting history to CSV for analysis
+- **🏆 Efficiency Ratings**: Real-time ratings based on duration and cost
 
-- **React** - UI and state management
-- **Vite** - Fast build tool
-- **Tailwind CSS** - Styling
+### UX Enhancements
+- **⌨️ Keyboard Shortcuts**:
+  - `Space` - Pause/Resume
+  - `H` - View history
+  - `Ctrl+S` or `Cmd+S` - Share
+  - `Ctrl+R` or `Cmd+R` - Reset
+  - `Esc` - Close modals
+- **💡 Interactive Tooltips**: Hover over metrics to learn how they're calculated
+- **🎨 Polished Animations**: Smooth transitions, fade-ins, and pulse effects
+- **♿ Accessibility**: Full ARIA labels, keyboard navigation, and focus states
+- **📱 Responsive Design**: Works beautifully on desktop, tablet, and mobile
+- **🖥️ Browser Tab Updates**: See the cost even when tabbed out
+
+## 🛠️ Tech Stack
+
+- **React 18** - Modern UI with hooks
+- **Vite** - Lightning-fast build tool
+- **Tailwind CSS v4** - Utility-first styling
 - **html2canvas** - Screenshot generation
-- **LocalStorage** - Meeting history persistence
+- **LocalStorage API** - Meeting history persistence
 
-## Getting Started
+## 🚀 Getting Started
 
 ### Installation
 
@@ -55,70 +72,157 @@ npm run build
 npm run preview
 ```
 
-## How It Works
+## 📐 How It Works
 
 ### Calculation Logic
 
-The calculator uses industry-standard formulas:
+The calculator uses industry-standard formulas to ensure accuracy:
 
 1. **Base hourly rate**: Annual Salary ÷ 2,080 work hours
 2. **Per-minute rate**: Hourly Rate ÷ 60
 3. **Meeting cost/minute**: Per-minute Rate × Number of People
-4. **Actual cost**: Total Cost × 1.4 (includes 40% overhead for benefits, equipment, etc.)
+4. **Actual cost**: Total Cost × 1.4 (includes 40% overhead for benefits, equipment, office space)
 
 ### Opportunity Cost Calculations
 
-- **Engineering hours**: Based on actual hourly rates
-- **Features**: Estimated at $800 per feature
-- **Bug fixes**: Estimated at $110 per fix
-- **Lines of code**: Estimated at $3 per line
-- **Pull requests**: Estimated at $170 per review
+All estimates based on industry averages:
+
+- **Engineering hours**: Calculated from actual hourly rates with overhead
+- **Features**: $800 per feature
+- **Bug fixes**: $110 per fix
+- **Lines of code**: $3 per line
+- **Pull request reviews**: $170 per review
 
 ### Efficiency Ratings
 
-- 🟢 **Acceptable**: < 15 minutes
-- 🟡 **Moderate**: < 30 min, < $500
-- 🟠 **Questionable**: < 45 min, < $1000
-- 🔴 **Poor**: Everything else (should've been an email)
+Dynamic ratings based on meeting duration and cost:
 
-## Usage
+- 🟢 **Acceptable**: < 15 minutes - "Short and sweet"
+- 🟡 **Moderate**: < 30 min, < $500 - "Could this be an email?"
+- 🟠 **Questionable**: < 45 min, < $1000 - "Are decisions being made?"
+- 🔴 **Poor**: Everything else - "This should definitely have been an email"
+
+## 💡 Usage
+
+### Starting a Meeting
 
 1. Enter meeting details:
-   - Number of attendees
-   - Average salary (or select a preset)
-   - When the meeting started
+   - Number of attendees (1-1000)
+   - Average salary ($30k-$500k) or select a preset
+   - When the meeting started (now or X minutes ago)
+2. Click "Start Calculating"
 
-2. Watch the cost accumulate in real-time
+### During the Meeting
 
-3. Use controls:
-   - **Pause**: Stop the timer during breaks
-   - **Resume**: Continue tracking
-   - **Reset**: Start over (saves to history)
-   - **Share**: Generate and download/copy screenshot
+- Watch the cost accumulate in real-time
+- Use controls:
+  - **Pause** (Space): Stop the timer during breaks
+  - **Resume** (Space): Continue tracking
+  - **Reset** (Ctrl+R): Start over (auto-saves to history)
+  - **Share** (Ctrl+S): Generate shareable report
+  - **History** (H): View past meetings
 
-## Presets
+### After the Meeting
 
-- **Startup**: 5 people, $75k average
-- **Tech Company**: 8 people, $120k average
-- **Enterprise**: 12 people, $95k average
-- **Executives**: 5 people, $200k average
-- **Mixed Team**: 7 people, $110k average
-- **All-Hands**: 50 people, $110k average
+- Share the report on Slack/Teams
+- Review efficiency rating
+- Check meeting history for patterns
+- Export data to CSV for analysis
 
-## Professional Use
+## 🎭 Presets
+
+| Preset | Attendees | Avg Salary | Emoji |
+|--------|-----------|------------|-------|
+| Startup | 5 | $75k | 🚀 |
+| Tech Company | 8 | $120k | 💻 |
+| Enterprise | 12 | $95k | 🏢 |
+| Executives | 5 | $200k | 👔 |
+| Mixed Team | 7 | $110k | 👥 |
+| All-Hands | 50 | $110k | 🎯 |
+
+## ⌨️ Keyboard Shortcuts
+
+| Shortcut | Action |
+|----------|--------|
+| `Space` | Pause/Resume timer |
+| `H` | Open meeting history |
+| `Ctrl/Cmd + S` | Open share modal |
+| `Ctrl/Cmd + R` | Reset (with confirmation) |
+| `Esc` | Close modals |
+
+## 📊 Meeting History
+
+- Automatically saves completed meetings
+- Stores last 10 meetings
+- View statistics:
+  - Total meetings tracked
+  - All-time cost
+  - Last 30 days cost
+- Export to CSV for analysis
+- Clear history option
+
+## 🎯 Professional Use
 
 This tool is designed to be:
-- Professional enough for corporate settings
-- Data-driven (no overt snark)
-- Shareable on company Slack/Teams
-- Effective at encouraging meeting efficiency
+- **Professional** enough for corporate settings
+- **Data-driven** with no overt snark
+- **Shareable** on company Slack/Teams channels
+- **Effective** at encouraging meeting efficiency
 
-The numbers speak for themselves. No need for jokes when the accumulating dollars create the message.
+The numbers speak for themselves. No need for jokes when accumulating dollars create the message.
 
-## License
+## 🏗️ Project Structure
+
+```
+src/
+├── components/
+│   ├── SetupScreen.jsx        # Initial configuration
+│   ├── LiveCalculator.jsx     # Real-time display
+│   ├── ShareModal.jsx         # Screenshot generation
+│   ├── MeetingHistory.jsx     # History viewer
+│   └── Tooltip.jsx           # Reusable tooltips
+├── utils/
+│   ├── calculations.js        # All cost formulas
+│   ├── constants.js          # App constants & config
+│   ├── storage.js            # localStorage helpers
+│   └── export.js             # CSV export utilities
+├── App.jsx                   # Main app with state & shortcuts
+├── index.css                 # Global styles & animations
+└── main.jsx                  # App entry point
+```
+
+## 🎨 Design Philosophy
+
+- **Minimal**: Clean interface, let the data speak
+- **Professional**: Suitable for corporate environments
+- **Subtle**: Passive-aggressive through data, not copy
+- **Accessible**: Keyboard navigation, ARIA labels, focus states
+- **Responsive**: Works on all screen sizes
+- **Delightful**: Smooth animations and interactions
+
+## 🤝 Contributing
+
+Contributions are welcome! This is a simple, focused tool - please keep PRs aligned with the core mission of making people reconsider unnecessary meetings.
+
+## 📄 License
 
 MIT
 
 ---
 
+## 🎯 Success Metrics
+
+You know it's working when:
+- ✅ Someone opens it in a meeting and shows their screen
+- ✅ The numbers make people uncomfortable (in a good way)
+- ✅ Someone says "okay let's wrap this up"
+- ✅ Gets shared on company Slack with 👀 reactions
+- ✅ Managers start referencing it to cut meetings
+- ✅ Screenshots go viral on Twitter/LinkedIn
+- ✅ Becomes the passive-aggressive meeting killer
+
+---
+
 **Could this have been an email?** 📧
+
+*Built with ❤️ and a healthy disdain for unnecessary meetings.*

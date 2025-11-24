@@ -4,8 +4,11 @@ body {
   background: white;
   color: #1a1a1a;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
+/* Gradient text for the main cost display */
 .gradient-text {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   -webkit-background-clip: text;
@@ -13,6 +16,7 @@ body {
   background-clip: text;
 }
 
+/* Subtle pulsing animation for the cost number */
 .pulse-subtle {
   animation: pulse-subtle 5s ease-in-out infinite;
 }
@@ -28,6 +32,7 @@ body {
   }
 }
 
+/* Fade in animation for components */
 .fade-in {
   animation: fade-in 0.5s ease-in;
 }
@@ -43,6 +48,61 @@ body {
   }
 }
 
+/* Smooth counter updates */
 .counter-animation {
   transition: all 0.3s ease-out;
+}
+
+/* Smooth hover transitions for buttons */
+button {
+  transition: all 0.2s ease-out;
+}
+
+/* Focus states for accessibility */
+*:focus-visible {
+  outline: 2px solid #667eea;
+  outline-offset: 2px;
+}
+
+/* Smooth transitions for inputs */
+input {
+  transition: border-color 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+
+/* Modal animations */
+.modal-enter {
+  animation: modal-enter 0.3s ease-out;
+}
+
+@keyframes modal-enter {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Tooltip animations */
+.tooltip-enter {
+  animation: tooltip-enter 0.2s ease-out;
+}
+
+@keyframes tooltip-enter {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Keyboard hint styling */
+kbd {
+  font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+  font-size: 0.85em;
 }

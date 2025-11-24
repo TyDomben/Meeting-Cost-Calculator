@@ -1,7 +1,8 @@
 // LocalStorage utilities for meeting history
+import { STORAGE_KEYS, MAX_HISTORY_ITEMS } from './constants';
 
-const STORAGE_KEY = 'meeting_history';
-const MAX_HISTORY = 10;
+const STORAGE_KEY = STORAGE_KEYS.meetingHistory;
+const MAX_HISTORY = MAX_HISTORY_ITEMS;
 
 /**
  * Save a meeting to history

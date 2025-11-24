@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import SetupScreen from './components/SetupScreen';
 import LiveCalculator from './components/LiveCalculator';
 import ShareModal from './components/ShareModal';
+import MeetingHistory from './components/MeetingHistory';
 import {
   calculateMeetingCost,
   calculateOpportunityCosts,
@@ -9,6 +10,7 @@ import {
   formatMinutes,
 } from './utils/calculations';
 import { saveMeetingToHistory } from './utils/storage';
+import { KEYBOARD_SHORTCUTS } from './utils/constants';
 
 function App() {
   const [isRunning, setIsRunning] = useState(false);
@@ -18,7 +20,66 @@ function App() {
   const [startTime, setStartTime] = useState(null);
   const [pausedTime, setPausedTime] = useState(0);
   const [shareModalOpen, setShareModalOpen] = useState(false);
+  const [historyModalOpen, setHistoryModalOpen] = useState(false);
   const [shareData, setShareData] = useState(null);
+
+  // Keyboard shortcuts
+  useEffect(() => {
+    const handleKeyPress = (e) => {
+      // Don't trigger if typing in an input field
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
+        return;
+      }
+
+      // Close modals on Escape
+      if (e.key === KEYBOARD_SHORTCUTS.escape) {
+        setShareModalOpen(false);
+        setHistoryModalOpen(false);
+        return;
+      }
+
+      // Only enable shortcuts when calculator is running
+      if (!isRunning) {
+        // Allow history shortcut even when not running
+        if (e.key === KEYBOARD_SHORTCUTS.history) {
+          setHistoryModalOpen(true);
+        }
+        return;
+      }
+
+      switch (e.key) {
+        case KEYBOARD_SHORTCUTS.pause:
+          e.preventDefault();
+          if (isPaused) {
+            handleResume();
+          } else {
+            handlePause();
+          }
+          break;
+        case KEYBOARD_SHORTCUTS.reset:
+          if (e.ctrlKey || e.metaKey) {
+            e.preventDefault();
+            handleReset();
+          }
+          break;
+        case KEYBOARD_SHORTCUTS.share:
+          if (e.ctrlKey || e.metaKey) {
+            e.preventDefault();
+            handleShare();
+          }
+          break;
+        case KEYBOARD_SHORTCUTS.history:
+          e.preventDefault();
+          setHistoryModalOpen(true);
+          break;
+        default:
+          break;
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyPress);
+    return () => window.removeEventListener('keydown', handleKeyPress);
+  }, [isRunning, isPaused, startTime, pausedTime, avgSalary, numPeople]);
 
   // Update browser tab title with running cost
   useEffect(() => {
@@ -110,7 +171,7 @@ function App() {
   return (
     <div className="App">
       {!isRunning ? (
-        <SetupScreen onStart={handleStart} />
+        <SetupScreen onStart={handleStart} onShowHistory={() => setHistoryModalOpen(true)} />
       ) : (
         <LiveCalculator
           numPeople={numPeople}
@@ -121,6 +182,7 @@ function App() {
           onResume={handleResume}
           onReset={handleReset}
           onShare={handleShare}
+          onShowHistory={() => setHistoryModalOpen(true)}
         />
       )}
 
@@ -128,6 +190,11 @@ function App() {
         isOpen={shareModalOpen}
         onClose={() => setShareModalOpen(false)}
         meetingData={shareData}
+      />
+
+      <MeetingHistory
+        isOpen={historyModalOpen}
+        onClose={() => setHistoryModalOpen(false)}
       />
     </div>
   );
